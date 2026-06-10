@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>قهوة باب شريف — احجز مقعدك · كأس العالم 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0A0A;
+  --bg2:#111;
+  --surface:#161616;
+  --surface2:#1E1E1E;
+  --border:#242424;
+  --border2:#2E2E2E;
+  --red:#1A6B35;
+  --red2:#2A9B50;
+  --red-glow:rgba(26,107,53,0.15);
+  --red-dim:rgba(26,107,53,0.08);
+  --gold:#D4A017;
+  --gold2:#F5C842;
+  --text:#F5F5F5;
+  --text2:#CCCCCC;
+  --muted:#666;
+  --muted2:#888;
+  --wa:#25D366;
+  --white:#FFFFFF;
+  --live:#2A9B50;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Cairo',sans-serif;
+  background:var(--bg);color:var(--text);
+  max-width:420px;margin:0 auto;
+  min-height:100vh;overflow-x:hidden;
+  direction:rtl;
+}
+
+/* ══ STATUS BAR AREA ══ */
+.status-bar{
+  height:44px;
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.status-time{font-size:15px;font-weight:700;color:var(--text);}
+.status-icons{display:flex;gap:6px;align-items:center;}
+.status-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--red);
+  animation:livepulse 1.5s ease infinite;
+}
+@keyframes livepulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.status-live{font-size:10px;font-weight:700;color:var(--red);letter-spacing:1px;text-transform:uppercase;}
+
+/* ══ NAV ══ */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;height:56px;
+  background:var(--bg);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(20px);
+}
+.nav-logo{
+  font-size:22px;font-weight:900;
+  letter-spacing:2px;
+  color:var(--white);
+}
+.nav-logo span{color:var(--red);}
+.nav-logo-ar{
+  font-size:13px;font-weight:700;
+  color:var(--muted2);margin-top:-2px;
+}
+.nav-badge{
+  background:var(--red);
+  color:var(--white);font-size:9px;font-weight:800;
+  letter-spacing:1px;text-transform:uppercase;
+  padding:4px 10px;border-radius:20px;
+  font-family:'Cairo';
+}
+
+/* ══ HERO ══ */
+.hero{
+  position:relative;padding:28px 20px 24px;
+  overflow:hidden;
+  background:var(--bg);
+}
+/* Subtle noise texture */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;opacity:.4;
+}
+/* Red corner glow */
+.hero::after{
+  content:'';position:absolute;
+  top:-60px;left:-60px;
+  width:240px;height:240px;
+  background:radial-gradient(circle,rgba(230,48,48,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--red-dim);
+  border:1px solid rgba(230,48,48,0.25);
+  border-radius:20px;padding:4px 12px;
+  font-size:11px;font-weight:700;color:var(--red2);
+  margin-bottom:16px;position:relative;z-index:1;
+}
+.hero-tag-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--red);
+  animation:livepulse 1.5s ease infinite;
+}
+.hero-title{
+  font-size:38px;font-weight:900;
+  color:var(--white);line-height:1.1;
+  margin-bottom:8px;position:relative;z-index:1;
+  letter-spacing:-0.5px;
+}
+.hero-title .red{color:var(--red);}
+.hero-title .dim{color:var(--muted2);font-weight:300;}
+.hero-sub{
+  font-size:14px;font-weight:400;
+  color:var(--muted2);margin-bottom:20px;
+  position:relative;z-index:1;line-height:1.6;
+}
+.hero-stats{
+  display:flex;gap:0;
+  position:relative;z-index:1;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+}
+.hero-stat{
+  flex:1;padding:14px 10px;text-align:center;
+  border-left:1px solid var(--border);
+  position:relative;
+}
+.hero-stat:last-child{border-left:none;}
+.stat-num{
+  font-size:22px;font-weight:900;
+  color:var(--white);line-height:1;margin-bottom:4px;
+}
+.stat-num.red{color:var(--red);}
+.stat-lbl{font-size:10px;font-weight:600;color:var(--muted);line-height:1.3;}
+
+/* ══ SECTION HEADER ══ */
+.sec-hdr{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:24px 20px 14px;
+}
+.sec-title{font-size:18px;font-weight:800;color:var(--white);}
+.sec-title span{color:var(--red);}
+.sec-more{font-size:12px;font-weight:600;color:var(--muted2);cursor:pointer;}
+
+/* ══ MATCH CARDS ══ */
+.matches-wrap{padding:0 20px;display:flex;flex-direction:column;gap:10px;}
+
+/* FEATURED / NEXT MATCH */
+.match-featured{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;
+  position:relative;
+}
+.match-featured::before{
+  content:'';position:absolute;
+  top:0;right:0;left:0;height:2px;
+  background:linear-gradient(270deg,var(--red),transparent);
+}
+.match-featured-top{
+  padding:14px 16px 10px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.match-stage-pill{
+  background:var(--red-dim);
+  border:1px solid rgba(230,48,48,0.2);
+  border-radius:8px;padding:3px 10px;
+  font-size:10px;font-weight:700;color:var(--red2);
+}
+.match-date-txt{font-size:11px;color:var(--muted);font-weight:500;}
+
+.match-teams-row{
+  display:flex;align-items:center;
+  padding:10px 16px 14px;gap:12px;
+}
+.match-team{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.match-team.home{align-items:flex-end;}
+.match-team.away{align-items:flex-start;}
+.team-flag{font-size:32px;line-height:1;}
+.team-name{
+  font-size:13px;font-weight:700;color:var(--white);
+  text-align:center;
+}
+.match-center{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  flex-shrink:0;
+}
+.match-vs{
+  font-size:11px;font-weight:700;color:var(--muted);
+  letter-spacing:2px;
+}
+.match-time-big{
+  font-size:24px;font-weight:900;color:var(--red2);
+  letter-spacing:1px;line-height:1;
+}
+.match-time-zone{font-size:9px;color:var(--muted);font-weight:500;}
+
+.match-featured-bottom{
+  background:var(--surface2);
+  border-top:1px solid var(--border);
+  padding:10px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.match-venue-txt{font-size:11px;color:var(--muted2);font-weight:500;}
+.match-book-btn{
+  background:var(--red);
+  color:var(--white);border:none;
+  border-radius:20px;padding:6px 16px;
+  font-family:'Cairo';font-size:12px;font-weight:700;
+  cursor:pointer;transition:all .15s;
+}
+.match-book-btn:active{transform:scale(.95);background:var(--red2);}
+
+/* NORMAL MATCH CARD */
+.match-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px 16px;
+  display:flex;align-items:center;gap:14px;
+  cursor:pointer;transition:all .2s;
+  position:relative;overflow:hidden;
+}
+.match-card.selected{
+  border-color:var(--red);
+  background:var(--red-dim);
+}
+.match-card:active{transform:scale(.98);}
+.match-card-left{
+  display:flex;align-items:center;gap:10px;flex:1;
+  flex-direction:row-reverse;
+}
+.card-flags{font-size:20px;display:flex;align-items:center;gap:5px;}
+.card-vs-sm{font-size:9px;color:var(--muted);font-weight:700;letter-spacing:1px;}
+.card-teams{flex:1;text-align:right;}
+.card-teams-nm{font-size:13px;font-weight:700;color:var(--white);margin-bottom:2px;}
+.card-stage{font-size:10px;color:var(--muted);font-weight:500;}
+.card-right{text-align:left;flex-shrink:0;}
+.card-time{font-size:16px;font-weight:800;color:var(--red2);letter-spacing:.5px;}
+.card-date{font-size:9px;color:var(--muted);margin-top:1px;}
+.card-check{
+  width:20px;height:20px;border-radius:50%;
+  background:var(--red);color:var(--white);
+  font-size:10px;display:none;
+  align-items:center;justify-content:center;
+  flex-shrink:0;font-weight:700;
+}
+.match-card.selected .card-check{display:flex;}
+
+/* SELECTED INDICATOR */
+.selected-indicator{
+  margin:12px 20px 0;
+  background:var(--red-dim);
+  border:1px solid rgba(230,48,48,0.25);
+  border-radius:12px;padding:12px 16px;
+  display:flex;align-items:center;gap:10px;
+  flex-direction:row-reverse;
+}
+.selected-indicator.empty{
+  background:var(--surface);border-color:var(--border);
+}
+.si-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--red);flex-shrink:0;
+  animation:livepulse 1.5s ease infinite;
+}
+.si-txt{font-size:12px;font-weight:600;color:var(--text);}
+.si-empty{font-size:12px;color:var(--muted);}
+
+/* ══ RESERVATION FORM ══ */
+.form-section{
+  margin:20px 20px 0;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;
+}
+.form-hdr{
+  padding:16px 18px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.form-hdr-title{font-size:16px;font-weight:800;color:var(--white);}
+.form-hdr-num{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--red);color:var(--white);
+  font-size:13px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+}
+.form-body{padding:18px;}
+.f-row{margin-bottom:16px;}
+.f-row:last-child{margin-bottom:0;}
+.f-label{
+  font-size:11px;font-weight:700;color:var(--muted2);
+  display:block;margin-bottom:8px;text-align:right;
+  letter-spacing:.5px;
+}
+.f-input,.f-select{
+  width:100%;
+  background:var(--surface2);
+  border:1px solid var(--border2);
+  border-radius:12px;
+  padding:14px 16px;
+  color:var(--text);
+  font-family:'Cairo';font-size:14px;font-weight:500;
+  outline:none;transition:border-color .2s;
+  direction:rtl;text-align:right;
+}
+.f-input:focus,.f-select:focus{border-color:var(--red);}
+.f-input::placeholder{color:var(--muted);}
+.f-select{
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23666' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:left 16px center;
+  padding-left:38px;cursor:pointer;
+}
+.f-select option{background:#1E1E1E;color:var(--text);}
+.f-row-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+
+/* SEAT TYPE */
+.seat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.seat-opt{
+  background:var(--surface2);
+  border:2px solid var(--border2);
+  border-radius:12px;padding:14px 10px;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  cursor:pointer;transition:all .2s;
+}
+.seat-opt.active{border-color:var(--red);background:var(--red-dim);}
+.seat-em{font-size:24px;}
+.seat-nm{font-size:13px;font-weight:700;color:var(--text);}
+.seat-opt.active .seat-nm{color:var(--red2);}
+.seat-ds{font-size:10px;color:var(--muted);}
+
+/* EXTRAS */
+.extras-wrap{display:flex;flex-direction:column;gap:8px;}
+.extra-opt{
+  background:var(--surface2);
+  border:1px solid var(--border2);
+  border-radius:12px;padding:12px 14px;
+  display:flex;align-items:center;gap:12px;
+  cursor:pointer;transition:all .2s;
+  flex-direction:row-reverse;
+}
+.extra-opt.active{border-color:rgba(230,48,48,0.4);background:var(--red-dim);}
+.extra-em{font-size:20px;flex-shrink:0;}
+.extra-body{flex:1;text-align:right;}
+.extra-nm{font-size:13px;font-weight:600;color:var(--text);margin-bottom:1px;}
+.extra-opt.active .extra-nm{color:var(--red2);}
+.extra-ds{font-size:10px;color:var(--muted);}
+.extra-chk{
+  width:20px;height:20px;border-radius:6px;
+  border:2px solid var(--border2);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;transition:all .2s;
+}
+.extra-opt.active .extra-chk{
+  background:var(--red);border-color:var(--red);color:var(--white);
+}
+
+/* ══ HOW IT WORKS ══ */
+.how-section{
+  margin:20px 20px 0;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;padding:18px;
+}
+.how-title{
+  font-size:13px;font-weight:700;color:var(--muted2);
+  margin-bottom:18px;letter-spacing:.5px;
+}
+.how-steps{display:flex;flex-direction:column;gap:0;}
+.how-step{
+  display:flex;align-items:flex-start;gap:14px;
+  flex-direction:row-reverse;
+  padding-bottom:16px;margin-bottom:0;
+  position:relative;
+}
+.how-step:last-child{padding-bottom:0;}
+.how-step::before{
+  content:'';
+  position:absolute;right:9px;top:28px;
+  width:2px;height:calc(100% - 12px);
+  background:linear-gradient(to bottom,var(--border2),transparent);
+}
+.how-step:last-child::before{display:none;}
+.hs-num{
+  width:20px;height:20px;border-radius:50%;flex-shrink:0;
+  background:var(--red);color:var(--white);
+  font-size:11px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  margin-top:2px;
+}
+.hs-body{flex:1;text-align:right;}
+.hs-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:2px;}
+.hs-desc{font-size:11px;color:var(--muted);line-height:1.5;}
+
+/* ══ VENUE ══ */
+.venue-section{
+  margin:16px 20px 0;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;padding:18px;
+}
+.venue-rows{display:flex;flex-direction:column;gap:14px;}
+.venue-row{
+  display:flex;align-items:flex-start;gap:12px;
+  flex-direction:row-reverse;
+}
+.vr-icon{
+  font-size:16px;flex-shrink:0;
+  width:32px;height:32px;
+  background:var(--surface2);border:1px solid var(--border2);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+}
+.vr-body{flex:1;text-align:right;}
+.vr-label{font-size:9px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;}
+.vr-val{font-size:13px;font-weight:600;color:var(--text2);line-height:1.5;}
+.vr-link{
+  display:inline-flex;align-items:center;gap:4px;
+  margin-top:6px;font-size:11px;font-weight:700;
+  color:var(--red2);cursor:pointer;
+}
+
+/* ══ COUNTDOWN ══ */
+.countdown-bar{
+  margin:0 20px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;padding:14px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cd-label{font-size:11px;font-weight:700;color:var(--muted2);}
+.cd-nums{display:flex;align-items:center;gap:6px;}
+.cd-unit{display:flex;flex-direction:column;align-items:center;gap:2px;}
+.cd-box{
+  background:var(--surface2);border:1px solid var(--border2);
+  border-radius:8px;width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+}
+.cd-n{font-size:20px;font-weight:900;color:var(--red2);line-height:1;}
+.cd-l{font-size:8px;font-weight:600;color:var(--muted);margin-top:2px;}
+.cd-dot{font-size:18px;font-weight:900;color:var(--border2);margin-bottom:12px;}
+
+/* ══ CTA ══ */
+.cta-zone{
+  padding:20px 20px 44px;
+  background:linear-gradient(0deg,var(--bg) 70%,transparent);
+  position:sticky;bottom:0;
+}
+.cta-wa{
+  width:100%;
+  background:var(--wa);
+  color:var(--white);border:none;border-radius:14px;
+  padding:18px 20px;
+  font-family:'Cairo';font-size:17px;font-weight:800;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  box-shadow:0 8px 24px rgba(37,211,102,0.25);
+  transition:all .2s;letter-spacing:.3px;
+}
+.cta-wa:active{transform:scale(.98);}
+.cta-hint{
+  text-align:center;font-size:11px;
+  color:var(--muted);margin-top:8px;
+}
+
+/* ══ FOOTER ══ */
+.footer{
+  padding:24px 20px;
+  border-top:1px solid var(--border);
+  text-align:center;
+}
+.footer-logo{
+  font-size:20px;font-weight:900;
+  color:var(--white);letter-spacing:2px;margin-bottom:8px;
+}
+.footer-logo span{color:var(--red);}
+.footer-txt{font-size:11px;color:var(--muted);line-height:1.8;}
+.footer-brand{
+  font-size:10px;font-weight:600;
+  color:rgba(230,48,48,0.3);
+  letter-spacing:2px;text-transform:uppercase;
+  margin-top:10px;
+}
+
+/* ══ TOAST ══ */
+.toast{
+  position:fixed;bottom:100px;left:50%;
+  transform:translateX(-50%) translateY(12px);
+  background:var(--red);
+  color:var(--white);padding:10px 22px;border-radius:20px;
+  font-family:'Cairo';font-size:12px;font-weight:700;
+  opacity:0;transition:all .3s;
+  z-index:200;white-space:nowrap;pointer-events:none;
+  box-shadow:0 4px 20px rgba(230,48,48,0.4);
+}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp .4s ease both;}
+.matches-wrap .match-featured{animation:fadeUp .4s ease .1s both;}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <div class="status-time" id="clockTime">12:00</div>
+  <div class="status-icons">
+    <div class="status-dot"></div>
+    <div class="status-live">LIVE</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div>
+    <div class="nav-logo">BAB <span>SHAREEF</span></div>
+    <div class="nav-logo-ar">قهوة باب شريف · جدة</div>
+  </div>
+  <div class="nav-badge">⚽ كأس العالم 2026</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">
+    <div class="hero-tag-dot"></div>
+    قهوة وهوكا · جدة 🌊
+  </div>
+  <div class="hero-title">
+    شاهد<br>المباراة<br><span class="red">بعرض الحماس</span>
+  </div>
+  <div class="hero-sub">
+    طبق رئيسي + حلى + سلطة + مشروب غازي · احجز طاولتك الآن 🏆
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="stat-num red">65</div>
+      <div class="stat-lbl">ريال وجبة المباراة</div>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-num" id="daysLeft">8</div>
+      <div class="stat-lbl">أيام على الانطلاق</div>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-num red">8-3</div>
+      <div class="stat-lbl">ص-ف · أوقات العمل</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MATCH DAY DEAL -->
+<div style="margin:16px 20px 0;background:linear-gradient(135deg,#0D1A0D,#152B15);border:1px solid rgba(42,155,80,0.4);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;">
+  <div style="font-size:34px;flex-shrink:0;">🏆</div>
+  <div style="flex:1;">
+    <div style="font-family:'Cairo';font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#2A9B50;font-weight:700;margin-bottom:3px;">عرض مباريات كأس العالم</div>
+    <div style="font-family:'Cairo';font-size:14px;color:#F5F5F5;font-weight:700;">طبق رئيسي + حلى + سلطة + مشروب غازي</div>
+    <div style="font-family:'Cairo';font-size:11px;color:#888;margin-top:2px;">جميع أيام المباريات</div>
+  </div>
+  <div style="background:linear-gradient(135deg,#2A9B50,#1A6B35);color:#fff;font-family:'Cairo';font-size:14px;font-weight:900;width:54px;height:54px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;line-height:1;box-shadow:0 0 18px rgba(42,155,80,0.4);">65<small style="font-size:8px;font-weight:700;">ريال</small></div>
+</div>
+
+<!-- COUNTDOWN -->
+<div style="padding:16px 20px 0;">
+  <div class="countdown-bar">
+    <div class="cd-label">ينطلق كأس العالم خلال</div>
+    <div class="cd-nums">
+      <div class="cd-unit">
+        <div class="cd-box"><div class="cd-n" id="cdD">00</div></div>
+        <div class="cd-l">يوم</div>
+      </div>
+      <div class="cd-dot">:</div>
+      <div class="cd-unit">
+        <div class="cd-box"><div class="cd-n" id="cdH">00</div></div>
+        <div class="cd-l">ساعة</div>
+      </div>
+      <div class="cd-dot">:</div>
+      <div class="cd-unit">
+        <div class="cd-box"><div class="cd-n" id="cdM">00</div></div>
+        <div class="cd-l">دقيقة</div>
+      </div>
+      <div class="cd-dot">:</div>
+      <div class="cd-unit">
+        <div class="cd-box"><div class="cd-n" id="cdS">00</div></div>
+        <div class="cd-l">ثانية</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED MATCH -->
+<div class="sec-hdr">
+  <div class="sec-title">المباراة <span>القادمة</span></div>
+</div>
+<div class="matches-wrap">
+  <div class="match-featured">
+    <div class="match-featured-top">
+      <div class="match-stage-pill" id="featStage">مباراة الافتتاح</div>
+      <div class="match-date-txt" id="featDate">11 يونيو 2026</div>
+    </div>
+    <div class="match-teams-row">
+      <div class="match-team away">
+        <div class="team-flag" id="featAwayFlag">🇿🇦</div>
+        <div class="team-name" id="featAwayName">جنوب أفريقيا</div>
+      </div>
+      <div class="match-center">
+        <div class="match-vs">VS</div>
+        <div class="match-time-big" id="featTime">3:00</div>
+        <div class="match-time-zone">توقيت الرياض +3</div>
+      </div>
+      <div class="match-team home">
+        <div class="team-flag" id="featHomeFlag">🇲🇽</div>
+        <div class="team-name" id="featHomeName">المكسيك</div>
+      </div>
+    </div>
+    <div class="match-featured-bottom">
+      <div class="match-venue-txt" id="featVenue">إستاد أزتيكا · المكسيك</div>
+      <button class="match-book-btn" onclick="selectFeatured()">احجز طاولتك ←</button>
+    </div>
+  </div>
+</div>
+
+<!-- ALL MATCHES -->
+<div class="sec-hdr">
+  <div class="sec-title">جميع <span>المباريات</span></div>
+  <div class="sec-more">الكل →</div>
+</div>
+<div class="matches-wrap" id="matchList"></div>
+
+<!-- SELECTED INDICATOR -->
+<div class="selected-indicator empty" id="selIndicator">
+  <span class="si-empty">← اضغط على مباراة لاختيارها</span>
+</div>
+
+<!-- RESERVATION FORM -->
+<div class="form-section">
+  <div class="form-hdr">
+    <div class="form-hdr-title">تفاصيل الحجز</div>
+    <div class="form-hdr-num">٢</div>
+  </div>
+  <div class="form-body">
+
+    <div class="f-row">
+      <label class="f-label">نوع الجلسة</label>
+      <div class="seat-grid">
+        <div class="seat-opt active" id="seatIn" onclick="setSeat('indoor')">
+          <div class="seat-em">🛋️</div>
+          <div class="seat-nm">داخلي</div>
+          <div class="seat-ds">مكيّف · هادئ</div>
+        </div>
+        <div class="seat-opt" id="seatOut" onclick="setSeat('outdoor')">
+          <div class="seat-em">🌿</div>
+          <div class="seat-nm">خارجي</div>
+          <div class="seat-ds">هواء طلق · أجواء</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-row-2">
+      <div>
+        <label class="f-label">عدد الأشخاص</label>
+        <select class="f-select" id="partySize">
+          <option value="">اختر...</option>
+          <option>1–2</option>
+          <option>3–4</option>
+          <option>5–6</option>
+          <option>7–10</option>
+          <option>+10</option>
+        </select>
+      </div>
+      <div>
+        <label class="f-label">وقت الوصول</label>
+        <select class="f-select" id="arrivalTime">
+          <option value="">اختر...</option>
+          <option>قبل ساعة</option>
+          <option>قبل 30 دقيقة</option>
+          <option>عند الانطلاق</option>
+          <option>أثناء المباراة</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="f-row">
+      <label class="f-label">الاسم</label>
+      <input class="f-input" id="guestName" type="text" placeholder="اسمك الأول..." />
+    </div>
+
+    <div class="f-row">
+      <label class="f-label">إضافات (اختياري)</label>
+      <div class="extras-wrap">
+        <div class="extra-opt" id="extVIP" onclick="toggleExt('vip')">
+          <div class="extra-em">⭐</div>
+          <div class="extra-body">
+            <div class="extra-nm">طاولة VIP</div>
+            <div class="extra-ds">أفضل زاوية · أولوية الخدمة</div>
+          </div>
+          <div class="extra-chk" id="extVIPChk"></div>
+        </div>
+        <div class="extra-opt" id="extGroup" onclick="toggleExt('group')">
+          <div class="extra-em">👥</div>
+          <div class="extra-body">
+            <div class="extra-nm">حجز منطقة خاصة</div>
+            <div class="extra-ds">للمجموعات الكبيرة +10 أشخاص</div>
+          </div>
+          <div class="extra-chk" id="extGroupChk"></div>
+        </div>
+        <div class="extra-opt" id="extBday" onclick="toggleExt('bday')">
+          <div class="extra-em">🎉</div>
+          <div class="extra-body">
+            <div class="extra-nm">مناسبة خاصة</div>
+            <div class="extra-ds">عيد ميلاد أو احتفال جماعي</div>
+          </div>
+          <div class="extra-chk" id="extBdayChk"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-row">
+      <label class="f-label">ملاحظات (اختياري)</label>
+      <input class="f-input" id="guestNotes" placeholder="أي طلبات أخرى..." />
+    </div>
+
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how-section">
+  <div class="how-title">كيف يعمل النظام</div>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="hs-num">١</div>
+      <div class="hs-body">
+        <div class="hs-title">اختر مباراتك</div>
+        <div class="hs-desc">حدّد ليلة المباراة التي تريد حضورها من القائمة</div>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="hs-num">٢</div>
+      <div class="hs-body">
+        <div class="hs-title">أدخل تفاصيل الحجز</div>
+        <div class="hs-desc">اختر نوع الجلسة وعدد الأشخاص واسمك</div>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="hs-num">٣</div>
+      <div class="hs-body">
+        <div class="hs-title">اضغط "احجز عبر واتساب"</div>
+        <div class="hs-desc">رسالة الحجز تُملأ تلقائياً بكل التفاصيل</div>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="hs-num">٤</div>
+      <div class="hs-body">
+        <div class="hs-title">نؤكد طاولتك فوراً ✅</div>
+        <div class="hs-desc">فريق الكافيه يرد على واتساب خلال دقائق</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VENUE -->
+<div class="venue-section">
+  <div class="venue-rows">
+    <div class="venue-row">
+      <div class="vr-icon">📍</div>
+      <div class="vr-body">
+        <div class="vr-label">الموقع</div>
+        <div class="vr-val" id="venueAddr">جدة · حي النعيم، شارع الأمل<br>المملكة العربية السعودية</div>
+        <div class="vr-link" onclick="window.open('https://maps.app.goo.gl/SbdFrPufsPZU9Seh9','_blank')">🗺️ الاتجاهات ←</div>
+      </div>
+    </div>
+    <div class="venue-row">
+      <div class="vr-icon">🕐</div>
+      <div class="vr-body">
+        <div class="vr-label">أوقات العمل</div>
+        <div class="vr-val">يومياً من 8:00 صباحاً حتى 3:00 فجراً</div>
+      </div>
+    </div>
+    <div class="venue-row">
+      <div class="vr-icon">📺</div>
+      <div class="vr-body">
+        <div class="vr-label">المميزات</div>
+        <div class="vr-val">شاشات كبيرة · قهوة مختصة · أجواء رياضية · جلسات داخلية وخارجية</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-zone">
+  <button class="cta-wa" onclick="doReserve()">
+    💬 احجز عبر واتساب
+  </button>
+  <div class="cta-hint">يفتح واتساب · تفاصيلك جاهزة تلقائياً · مجاناً</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">BAB <span>SHAREEF</span></div>
+  <div class="footer-txt">
+    قهوة باب شريف · جدة · المملكة العربية السعودية<br>
+    شاهد المباراة بعرض الحماس · FIFA World Cup 2026™ ⚽
+  </div>
+  <div class="footer-brand">Powered by MatchOrder</div>
+</div>
+
+<script>
+// ══ CONFIG — change per venue ══
+const CONFIG = {
+  wa: "966545353335",
+  venueName: "قهوة باب شريف",
+  venueNameEn: "Bab Shareef Coffee",
+};
+
+const MATCHES = [
+  {date:"2026-06-11",time:"15:00",home:"المكسيك",away:"جنوب أفريقيا",hf:"🇲🇽",af:"🇿🇦",stage:"مباراة الافتتاح",venue:"إستاد أزتيكا · المكسيك"},
+  {date:"2026-06-15",time:"15:00",home:"السعودية",away:"TBD",hf:"🇸🇦",af:"⚽",stage:"المجموعة أ",venue:""},
+  {date:"2026-06-16",time:"18:00",home:"المغرب",away:"TBD",hf:"🇲🇦",af:"⚽",stage:"المجموعة هـ",venue:""},
+  {date:"2026-06-17",time:"21:00",home:"فرنسا",away:"TBD",hf:"🇫🇷",af:"⚽",stage:"المجموعة ج",venue:""},
+  {date:"2026-06-19",time:"15:00",home:"السعودية",away:"TBD",hf:"🇸🇦",af:"⚽",stage:"المجموعة أ",venue:""},
+  {date:"2026-06-19",time:"21:00",home:"الأرجنتين",away:"TBD",hf:"🇦🇷",af:"⚽",stage:"المجموعة و",venue:""},
+  {date:"2026-07-04",time:"15:00",home:"TBD",away:"TBD",hf:"⚽",af:"⚽",stage:"دور الـ16",venue:""},
+  {date:"2026-07-10",time:"15:00",home:"TBD",away:"TBD",hf:"⚽",af:"⚽",stage:"ربع النهائي",venue:""},
+  {date:"2026-07-15",time:"15:00",home:"TBD",away:"TBD",hf:"⚽",af:"⚽",stage:"نصف النهائي",venue:""},
+  {date:"2026-07-19",time:"15:00",home:"TBD",away:"TBD",hf:"🏆",af:"🏆",stage:"النهائي الكبير",venue:"ميتلايف ستاديوم · نيوجيرسي"},
+];
+
+let selectedIdx=null, seating="indoor", extras=[];
+
+function init(){
+  startClock();
+  updateFeatured();
+  startCD();
+  renderMatches();
+  updateDaysLeft();
+}
+
+function startClock(){
+  function tick(){
+    const now=new Date();
+    const h=String(now.getHours()).padStart(2,"0");
+    const m=String(now.getMinutes()).padStart(2,"0");
+    document.getElementById("clockTime").textContent=`${h}:${m}`;
+  }
+  tick();setInterval(tick,1000);
+}
+
+function getNextMatch(){
+  const now=new Date();
+  for(const m of MATCHES){
+    const dt=new Date(`${m.date}T${m.time}:00`);
+    if(dt>now)return{...m,dt};
+  }
+  return{...MATCHES[MATCHES.length-1],dt:new Date("2026-07-19T15:00:00")};
+}
+
+function updateFeatured(){
+  const m=getNextMatch();
+  document.getElementById("featHomeFlag").textContent=m.hf;
+  document.getElementById("featAwayFlag").textContent=m.af;
+  document.getElementById("featHomeName").textContent=m.home;
+  document.getElementById("featAwayName").textContent=m.away;
+  document.getElementById("featStage").textContent=m.stage;
+  document.getElementById("featTime").textContent=m.time;
+  if(m.venue)document.getElementById("featVenue").textContent=m.venue;
+  const dt=new Date(`${m.date}T12:00:00`);
+  document.getElementById("featDate").textContent=dt.toLocaleDateString("ar-SA",{day:"numeric",month:"long",year:"numeric"});
+}
+
+function startCD(){
+  function tick(){
+    const now=new Date();const m=getNextMatch();
+    let diff=Math.max(0,m.dt-now)/1000;
+    const d=Math.floor(diff/86400);diff%=86400;
+    const h=Math.floor(diff/3600);diff%=3600;
+    const mn=Math.floor(diff/60);const s=Math.floor(diff%60);
+    const pad=n=>String(n).padStart(2,"0");
+    document.getElementById("cdD").textContent=pad(d);
+    document.getElementById("cdH").textContent=pad(h);
+    document.getElementById("cdM").textContent=pad(mn);
+    document.getElementById("cdS").textContent=pad(s);
+  }
+  tick();setInterval(tick,1000);
+}
+
+function updateDaysLeft(){
+  const now=new Date();
+  const wc=new Date("2026-06-11T15:00:00");
+  const days=Math.max(0,Math.ceil((wc-now)/86400000));
+  document.getElementById("daysLeft").textContent=days;
+}
+
+function renderMatches(){
+  const now=new Date();
+  const today=now.toISOString().slice(0,10);
+  document.getElementById("matchList").innerHTML=MATCHES.map((m,i)=>{
+    const isSel=selectedIdx===i;
+    const isToday=m.date===today;
+    const dt=new Date(`${m.date}T12:00:00`);
+    const dateStr=dt.toLocaleDateString("ar-SA",{month:"short",day:"numeric"});
+    return`<div class="match-card ${isSel?'selected':''}" onclick="selectMatch(${i})">
+      <div class="card-check">✓</div>
+      <div class="match-card-left">
+        <div class="card-flags">${m.hf} <span class="card-vs-sm">VS</span> ${m.af}</div>
+        <div class="card-teams">
+          <div class="card-teams-nm">${m.home} ضد ${m.away}</div>
+          <div class="card-stage">${m.stage}${isToday?' · اليوم':''}</div>
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="card-time">${m.time}</div>
+        <div class="card-date">${dateStr}</div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function selectFeatured(){
+  selectMatch(0);
+  document.querySelector(".form-section").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function selectMatch(idx){
+  selectedIdx=idx;
+  const m=MATCHES[idx];
+  const dt=new Date(`${m.date}T12:00:00`);
+  const dateStr=dt.toLocaleDateString("ar-SA",{month:"long",day:"numeric"});
+  const el=document.getElementById("selIndicator");
+  el.classList.remove("empty");
+  el.innerHTML=`<div class="si-dot"></div><span class="si-txt">✅ ${m.home} ضد ${m.away} · ${dateStr}</span>`;
+  renderMatches();
+  document.querySelector(".form-section").scrollIntoView({behavior:"smooth",block:"nearest"});
+  showToast(`⚽ ${m.home} ضد ${m.away}`);
+}
+
+function setSeat(t){
+  seating=t;
+  document.getElementById("seatIn").classList.toggle("active",t==="indoor");
+  document.getElementById("seatOut").classList.toggle("active",t==="outdoor");
+}
+
+function toggleExt(t){
+  const cap=t.charAt(0).toUpperCase()+t.slice(1);
+  const el=document.getElementById(`ext${cap}`);
+  const chk=document.getElementById(`ext${cap}Chk`);
+  const idx=extras.indexOf(t);
+  if(idx>-1){extras.splice(idx,1);el.classList.remove("active");if(chk)chk.textContent="";}
+  else{extras.push(t);el.classList.add("active");if(chk)chk.textContent="✓";}
+}
+
+function doReserve(){
+  const match=selectedIdx!==null?
+    `${MATCHES[selectedIdx].home} ضد ${MATCHES[selectedIdx].away}`:null;
+  const party=document.getElementById("partySize").value;
+  const arrival=document.getElementById("arrivalTime").value;
+  const name=document.getElementById("guestName").value.trim();
+  const notes=document.getElementById("guestNotes").value.trim();
+  const seatLbl=seating==="indoor"?"داخلي":"خارجي";
+
+  if(!match){showToast("⚽ اختر مباراة أولاً");return;}
+  if(!party){showToast("👥 اختر عدد الأشخاص");return;}
+  if(!arrival){showToast("🕐 اختر وقت الوصول");return;}
+  if(!name){showToast("👤 أدخل اسمك");return;}
+
+  const extMap={"vip":"طاولة VIP","group":"حجز منطقة خاصة","bday":"مناسبة خاصة"};
+  const extLabels=extras.map(e=>extMap[e]||e);
+
+  const dt=selectedIdx!==null?new Date(`${MATCHES[selectedIdx].date}T12:00:00`):null;
+  const dateStr=dt?dt.toLocaleDateString("ar-SA",{month:"long",day:"numeric"}):"";
+
+  let msg=`السلام عليكم ${CONFIG.venueName}! ⚽🌊\n\nأريد حجز طاولة لمشاهدة المباراة:\n\n📅 المباراة: ${match} · ${dateStr}\n🪑 الجلسة: ${seatLbl}\n👥 عدد الأشخاص: ${party}\n🕐 وقت الوصول: ${arrival}\n👤 الاسم: ${name}`;
+  if(extLabels.length)msg+=`\n✨ الإضافات: ${extLabels.join('، ')}`;
+  if(notes)msg+=`\n📝 ملاحظات: ${notes}`;
+  msg+=`\n\nشكراً جزيلاً 🙏\n\n*Powered by MatchOrder*`;
+
+  window.open(`https://wa.me/${CONFIG.wa}?text=${encodeURIComponent(msg)}`,"_blank");
+}
+
+function showToast(msg){
+  const el=document.getElementById("toast");
+  el.textContent=msg;el.classList.add("on");
+  setTimeout(()=>el.classList.remove("on"),2000);
+}
+
+init();
+</script>
+</body>
+</html>
